@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: buscador-de-abuse-de-dominios
+    runtime: node
+    plan: free
+    buildCommand: echo "sin dependencias"
+    startCommand: node server.js
