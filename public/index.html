@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Idea y desarrollo: Yaiza Rios (Cyberzaintza). Todos los derechos reservados. -->
+<title>Buscador de Abuse de dominios</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<section id="home">
+  <div class="center">
+    <div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></div>
+    <h1>Buscador de Abuse</h1>
+    <p class="lead">Encuentra a quién reportar un dominio de cualquier país y dónde está el formulario.</p>
+    <form id="f" class="box">
+      <input id="q" type="text" placeholder="Escribe aquí el dominio" autocomplete="off" autocapitalize="off" spellcheck="false" autofocus>
+      <button id="go" type="submit">Buscar</button>
+    </form>
+  </div>
+  <div class="sign">Idea y desarrollo: <strong>Yaiza Rios</strong> · Cyberzaintza</div>
+</section>
+
+<section id="res" hidden>
+  <div class="topbar"><div class="in">
+    <button id="back" type="button" class="sec">← Volver</button>
+    <span id="status"></span>
+    <button id="csv" type="button" class="sec" hidden>Exportar CSV</button>
+  </div></div>
+  <div id="out"></div>
+  <footer>Datos de RDAP/WHOIS y de la red (IP) del dominio. Los formularios «lista propia» están revisados; los «detectado» se buscan en la web del registrador y conviene comprobarlos.<div class="sign">Idea y desarrollo: <strong>Yaiza Rios</strong> · Cyberzaintza</div></footer>
+</section>
+<script src="app.js"></script>
+</body>
+</html>
