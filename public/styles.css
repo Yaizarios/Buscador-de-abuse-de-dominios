@@ -63,6 +63,10 @@ footer{max-width:1000px;margin:auto;padding:0 20px 30px;color:var(--mut);font-si
 @media(max-width:620px){h1{font-size:34px}.kv{grid-template-columns:1fr}.kv span:nth-child(odd){margin-top:8px}.where .act>.lab{min-width:0;width:100%}.card{padding:18px}}
 
 .where.host{background:linear-gradient(180deg,#f4f8ff,#eaf2ff);border-color:#b7d0f5}
+.where .banner{background:#fff;border:1.5px dashed #b7d0f5;border-radius:12px;padding:12px 14px;align-items:flex-start}
+.bbtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+a.btn.sec2{background:#fff;color:var(--acc2);border:1.5px solid var(--acc)}
+a.btn.sec2:hover{background:#eaf2ff}
 .where.host h3{color:var(--acc2)}
 
 #q{width:100%;padding:18px 20px;border:2px solid var(--line);border-radius:14px;background:#f8fbff;color:var(--ink);font:inherit;font-size:22px;text-align:left}

@@ -48,7 +48,18 @@ function whereBox(r) {
   let hs = '';
   const net = r.hosting.networks[0];
   if (net) hs += `<div class="act"><span class="lab">Red / hosting</span><strong>${esc(net.org || net.name)}</strong> <span class="sub">${esc(net.name)} · ${esc(net.ip)}</span></div>`;
-  if (hostMails.size) hs += `<div class="act"><span class="lab">Email abuse</span>${[...hostMails].map(mail).join('')}</div>`;
+  if (net) {
+    // dónde se ha localizado: país de la IP, web del proveedor (dominio del email abuse) y registro de la IP
+    const FREE = /^(gmail|hotmail|outlook|yahoo|live|icloud|proton|protonmail)\./i;
+    const dom = [...hostMails].map(m => m.split('@')[1]).find(d => d && !FREE.test(d));
+    let pais = '';
+    try { pais = net.country ? new Intl.DisplayNames(['es'], { type: 'region' }).of(net.country.toUpperCase()) : ''; } catch {}
+    const btns = [];
+    if (dom) btns.push(`<a class="btn" href="https://${esc(dom)}" target="_blank" rel="noopener noreferrer">Web del hosting: ${esc(dom)} ↗</a>`);
+    btns.push(`<a class="btn sec2" href="https://www.whois.com/whois/${encodeURIComponent(net.ip)}" target="_blank" rel="noopener noreferrer">Ver registro de la IP ${esc(net.ip)} ↗</a>`);
+    hs += `<div class="act banner"><span class="lab">Dónde se ha localizado</span><div>${pais ? `<div class="sub">País de la IP: <strong>${esc(pais)}</strong>${net.range ? ' · rango ' + esc(net.range) : ''}</div>` : ''}<div class="bbtns">${btns.join('')}</div></div></div>`;
+  }
+  if (hostMails.size) hs +=`<div class="act"><span class="lab">Email abuse</span>${[...hostMails].map(mail).join('')}</div>`;
   const hf = formBtns(hostForms);
   if (hf.length) hs += `<div class="act"><span class="lab">Formulario</span>${hf.join('')}</div>`;
   const cdn = hostForms.some(f => /cloudflare/i.test(f.name)) || r.hosting.networks.some(n => /cloudflare|fastly|akamai|cloudfront|amazon-cf/i.test(n.name + ' ' + n.org));
