@@ -66,6 +66,10 @@ footer{max-width:1000px;margin:auto;padding:0 20px 30px;color:var(--mut);font-si
 .where.host h3{color:var(--acc2)}
 
 #q{width:100%;padding:18px 20px;border:2px solid var(--line);border-radius:14px;background:#f8fbff;color:var(--ink);font:inherit;font-size:22px;text-align:left}
+.qwrap{position:relative}
+.qwrap #q{padding-right:56px}
+#clr{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:34px;height:34px;border:0;border-radius:50%;background:#e6ecf7;color:#5a6b8c;font-size:22px;line-height:1;cursor:pointer;padding:0}
+#clr:hover{background:#d5deef}
 #q:focus{outline:none;border-color:var(--acc);background:#fff}
 #q::placeholder{color:#9aa9c2}
 .sign{margin-top:26px;color:var(--mut);font-size:14px;text-align:center}

@@ -14,7 +14,10 @@
     <h1>Buscador de Abuse</h1>
     <p class="lead">Encuentra a quién reportar un dominio de cualquier país y dónde está el formulario.</p>
     <form id="f" class="box">
-      <input id="q" type="text" placeholder="Escribe aquí el dominio" autocomplete="off" autocapitalize="off" spellcheck="false" autofocus>
+      <div class="qwrap">
+        <input id="q" type="text" placeholder="Escribe aquí el dominio" autocomplete="off" autocapitalize="off" spellcheck="false" autofocus>
+        <button id="clr" type="button" aria-label="Borrar texto" title="Borrar texto" hidden>×</button>
+      </div>
       <button id="go" type="submit">Buscar</button>
     </form>
   </div>
@@ -24,11 +27,9 @@
 <section id="res" hidden>
   <div class="topbar"><div class="in">
     <button id="back" type="button" class="sec">← Volver</button>
-    <span id="status"></span>
-    <button id="csv" type="button" class="sec" hidden>Exportar CSV</button>
-  </div></div>
+    <span id="status"></span>  </div></div>
   <div id="out"></div>
-  <footer>Datos de RDAP/WHOIS y de la red (IP) del dominio. Los formularios «lista propia» están revisados; los «detectado» se buscan en la web del registrador y conviene comprobarlos.<div class="sign">Idea y desarrollo: <strong>Yaiza Rios</strong> · Cyberzaintza</div></footer>
+  <footer><div class="sign">Idea y desarrollo: <strong>Yaiza Rios</strong> · Cyberzaintza</div></footer>
 </section>
 <script src="app.js"></script>
 </body>

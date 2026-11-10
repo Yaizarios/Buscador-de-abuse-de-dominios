@@ -137,7 +137,7 @@ $('#f').addEventListener('submit', async (e) => {
   e.preventDefault();
   const list = [...new Set($('#q').value.split(/[\s,;]+/).map(s => s.trim()).filter(Boolean))].slice(0, 20);
   if (!list.length) return;
-  $('#go').disabled = true; $('#out').innerHTML = ''; results = []; $('#csv').hidden = true;
+  $('#go').disabled = true; $('#out').innerHTML = ''; results = [];
   history.pushState({ v: 'res' }, ''); show('res');
   $('#out').innerHTML = loaderHtml(list[0]);
   for (let i = 0; i < list.length; i++) {
@@ -152,7 +152,7 @@ $('#f').addEventListener('submit', async (e) => {
   }
   clearInterval(stepTimer);
   $('#status').textContent = `Hecho (${list.length})`;
-  $('#go').disabled = false; $('#csv').hidden = false;
+  $('#go').disabled = false;
 });
 
 document.addEventListener('click', (e) => {
@@ -163,15 +163,6 @@ document.addEventListener('click', (e) => {
   navigator.clipboard.writeText(b.dataset.copy).then(() => { b.textContent = '¡Copiado!'; setTimeout(() => b.textContent = 'Copiar', 1200); });
 });
 
-$('#csv').addEventListener('click', () => {
-  const q = (s) => '"' + String(s ?? '').replace(/"/g, '""') + '"';
-  const rows = [['Dominio', 'Fecha de creación', 'Registrador', 'Abuse registrador', 'Tel. abuse', 'IP', 'Red', 'Abuse hosting', 'Formulario registrador', 'Formulario hosting/CDN']];
-  for (const r of results) {
-    if (r.error) { rows.push([r.input, r.error]); continue; }
-    const n = r.hosting.networks[0];
-    const rf = r.forms.find(x => x.scope === 'Registrador'), hf = r.forms.find(x => x.scope !== 'Registrador');
-    rows.push([r.domain, r.registry?.created ? String(r.registry.created).slice(0, 10) : '', r.registry?.registrar, (r.registry?.abuse.emails || []).join('; '), (r.registry?.abuse.phones || []).join('; '), n?.ip, n?.name, (n?.abuse.emails || []).join('; '), rf?.url || rf?.links?.[0]?.url || 'No consta', hf?.url || hf?.links?.[0]?.url || 'No consta']);
-  }
-  const blob = new Blob(['﻿' + rows.map(r => r.map(q).join(';')).join('\r\n')], { type: 'text/csv;charset=utf-8' });
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'abuses-dominios.csv'; a.click();
-});
+const syncClr = () => { $('#clr').hidden = !$('#q').value; };
+$('#q').addEventListener('input', syncClr);
+$('#clr').addEventListener('click', () => { $('#q').value = ''; syncClr(); $('#q').focus(); });
