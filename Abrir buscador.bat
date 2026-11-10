@@ -1,10 +1,12 @@
 @echo off
 cd /d "%~dp0"
-where node >nul 2>nul
+set NODE=node
+if exist "%~dp0node\node.exe" set NODE="%~dp0node\node.exe"
+%NODE% -v >nul 2>nul
 if errorlevel 1 (
-  echo Necesitas instalar Node.js: https://nodejs.org
+  echo No se encuentra Node.js. Descargalo en https://nodejs.org o usa el zip con node incluido.
   pause
   exit /b
 )
 start "" http://localhost:3000
-node server.js
+%NODE% server.js
